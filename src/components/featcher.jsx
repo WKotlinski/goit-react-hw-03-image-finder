@@ -2,7 +2,6 @@ import { Component } from "react";
 import axios from "axios";
 import Searchbar from "./searchbar";
 import ImageGallery from "./gallery/image-gallery";
-import Modal from "./modal/modal";
 
 const API_KEY = "41167232-e4ed0bcecad469809d9012c23";
 const BASE_URL = "https://pixabay.com/api/";
