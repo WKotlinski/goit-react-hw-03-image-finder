@@ -1,6 +1,7 @@
 import { Component } from "react";
 import ReactModal from "react-modal";
 import css from "./modal.module.css";
+import PropTypes from "prop-types";
 
 export default class Modal extends Component {
   render() {
@@ -10,7 +11,7 @@ export default class Modal extends Component {
       <ReactModal isOpen={isOpen} onRequestClose={onClose} contentLabel="Modal">
         <div className={css.overlay} onClick={onClose}>
           <div className={css.modal}>
-            <img src={imageUrl} alt="" />
+            <img src={imageUrl} alt="" onClick={(e) => e.stopPropagation()} />
             <button onClick={onClose}>Zamknij</button>
           </div>
         </div>
@@ -18,3 +19,9 @@ export default class Modal extends Component {
     );
   }
 }
+
+Modal.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  imageUrl: PropTypes.string.isRequired,
+  onClose: PropTypes.func.isRequired,
+};

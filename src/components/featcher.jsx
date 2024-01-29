@@ -63,14 +63,14 @@ export default class Featcher extends Component {
           <>
             <Searchbar onSubmit={this.fetchData} />
             <ImageGallery images={this.state.images} onClick={this.openModal} />
-            <Button
-              onClick={this.loadMore}
-              disabled={!this.state.images.length}
-            />
             <Modal
               isOpen={this.state.isModalOpen}
               imageUrl={this.state.selectedImageUrl}
               onClose={this.closeModal}
+            />
+            <Button
+              onClick={this.loadMore}
+              disabled={!this.state.images.length}
             />
           </>
         )}

@@ -9,13 +9,9 @@ export default class ImageGalleryItem extends Component {
     return (
       <li
         className={css["gallery-item"]}
-        onClick={(e) => {
-          if (e.target.tagName !== "IMG") {
-            onClick(image.largeImageURL);
-          }
-        }}
+        onClick={() => onClick(image.largeImageURL)}
       >
-        <img src={image.webformatURL} alt="@" />
+        <img src={image.webformatURL} alt="" />
       </li>
     );
   }
@@ -25,7 +21,6 @@ ImageGalleryItem.propTypes = {
   image: PropTypes.shape({
     webformatURL: PropTypes.string.isRequired,
     largeImageURL: PropTypes.string.isRequired,
-    // Add other properties of the 'image' object as needed
   }).isRequired,
   onClick: PropTypes.func.isRequired,
 };
