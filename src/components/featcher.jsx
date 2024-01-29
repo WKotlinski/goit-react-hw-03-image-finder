@@ -20,24 +20,27 @@ export default class Featcher extends Component {
     };
   }
 
-  fetchData = async (query) => {
-    this.setState({ isLoading: true });
-
-    const url = `${BASE_URL}?q=${query}&page=1&key=${API_KEY}&image_type=photo&orientation=horizontal&per_page=12`;
+  fetchData = async (query, page = 1) => {
+    const url = `${BASE_URL}?q=${query}&page=${page}&key=${API_KEY}&image_type=photo&orientation=horizontal&per_page=12`;
 
     try {
       const response = await axios.get(url);
-      this.setState({ images: response.data.hits });
+      this.setState((prevState) => ({
+        images:
+          page === 1
+            ? response.data.hits
+            : [...prevState.images, ...response.data.hits],
+        page: page + 1,
+        query,
+      }));
     } catch (error) {
       console.error("Error fetching data:", error);
-    } finally {
-      this.setState({ isLoading: false });
     }
   };
 
   loadMore = () => {
-    const { query } = this.state;
-    this.fetchData(query);
+    const { query, page } = this.state;
+    this.fetchData(query, page);
   };
 
   openModal = (imageUrl) => {

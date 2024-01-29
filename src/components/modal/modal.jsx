@@ -8,7 +8,12 @@ export default class Modal extends Component {
     const { isOpen, imageUrl, onClose } = this.props;
 
     return (
-      <ReactModal isOpen={isOpen} onRequestClose={onClose} contentLabel="Modal">
+      <ReactModal
+        isOpen={isOpen}
+        onRequestClose={onClose}
+        contentLabel="Modal"
+        className={css.modal}
+      >
         <div className={css.overlay} onClick={onClose}>
           <div className={css.modal}>
             <img src={imageUrl} alt="" onClick={(e) => e.stopPropagation()} />
