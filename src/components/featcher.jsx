@@ -4,6 +4,7 @@ import Searchbar from "./searchbar";
 import ImageGallery from "./gallery/image-gallery";
 import Modal from "./modal/modal";
 import Loader from "./loader";
+import Button from "./button";
 
 const API_KEY = "41167232-e4ed0bcecad469809d9012c23";
 const BASE_URL = "https://pixabay.com/api/";
@@ -34,6 +35,11 @@ export default class Featcher extends Component {
     }
   };
 
+  loadMore = () => {
+    const { query } = this.state;
+    this.fetchData(query);
+  };
+
   openModal = (imageUrl) => {
     console.log("Modal działa");
     this.setState({
@@ -57,6 +63,10 @@ export default class Featcher extends Component {
           <>
             <Searchbar onSubmit={this.fetchData} />
             <ImageGallery images={this.state.images} onClick={this.openModal} />
+            <Button
+              onClick={this.loadMore}
+              disabled={!this.state.images.length}
+            />
             <Modal
               isOpen={this.state.isModalOpen}
               imageUrl={this.state.selectedImageUrl}

@@ -1,6 +1,7 @@
 import { Component } from "react";
 import ImageGalleryItem from "./image-gallery-item";
 import css from "./gallery.module.css";
+import PropTypes from "prop-types";
 
 export default class ImageGallery extends Component {
   render() {

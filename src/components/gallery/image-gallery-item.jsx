@@ -1,5 +1,6 @@
 import { Component } from "react";
 import css from "./gallery.module.css";
+import PropTypes from "prop-types";
 
 export default class ImageGalleryItem extends Component {
   render() {
@@ -8,7 +9,11 @@ export default class ImageGalleryItem extends Component {
     return (
       <li
         className={css["gallery-item"]}
-        onClick={() => onClick(image.largeImageURL)}
+        onClick={(e) => {
+          if (e.target.tagName !== "IMG") {
+            onClick(image.largeImageURL);
+          }
+        }}
       >
         <img src={image.webformatURL} alt="@" />
       </li>
