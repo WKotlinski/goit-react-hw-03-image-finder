@@ -20,3 +20,14 @@ export default class ImageGallery extends Component {
     );
   }
 }
+
+ImageGallery.propTypes = {
+  images: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      largeImageURL: PropTypes.string.isRequired,
+      // Add other properties of the 'image' object as needed
+    })
+  ).isRequired,
+  onClick: PropTypes.func.isRequired,
+};
