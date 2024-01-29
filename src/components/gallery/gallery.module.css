@@ -1,5 +1,3 @@
-/* image-gallery.module.css */
-
 .gallery {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -24,5 +22,5 @@
 
 .gallery-item:hover {
   cursor: pointer;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); /* Przykładowy cień podczas najechania (opcjonalne) */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
