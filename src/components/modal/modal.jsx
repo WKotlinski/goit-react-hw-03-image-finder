@@ -17,7 +17,9 @@ export default class Modal extends Component {
         <div className={css.overlay} onClick={onClose}>
           <div className={css.modal}>
             <img src={imageUrl} alt="" onClick={(e) => e.stopPropagation()} />
-            <button onClick={onClose}>Zamknij</button>
+            <button onClick={onClose} className={css.btn}>
+              Zamknij
+            </button>
           </div>
         </div>
       </ReactModal>
