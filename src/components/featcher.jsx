@@ -21,6 +21,8 @@ export default class Featcher extends Component {
   }
 
   fetchData = async (query, page = 1) => {
+    this.setState({ isLoading: true });
+
     const url = `${BASE_URL}?q=${query}&page=${page}&key=${API_KEY}&image_type=photo&orientation=horizontal&per_page=12`;
 
     try {
@@ -35,6 +37,8 @@ export default class Featcher extends Component {
       }));
     } catch (error) {
       console.error("Error fetching data:", error);
+    } finally {
+      this.setState({ isLoading: false });
     }
   };
 
@@ -58,25 +62,21 @@ export default class Featcher extends Component {
     });
   };
   render() {
+    const { images, isLoading } = this.state;
+
     return (
       <div>
-        {this.state.isLoading ? (
-          <Loader />
-        ) : (
-          <>
-            <Searchbar onSubmit={this.fetchData} />
-            <ImageGallery images={this.state.images} onClick={this.openModal} />
-            <Modal
-              isOpen={this.state.isModalOpen}
-              imageUrl={this.state.selectedImageUrl}
-              onClose={this.closeModal}
-            />
-            <Button
-              onClick={this.loadMore}
-              disabled={!this.state.images.length}
-            />
-          </>
+        {isLoading && <Loader />}
+        <Searchbar onSubmit={this.fetchData} />
+        <ImageGallery images={images} onClick={this.openModal} />
+        {images.length > 0 && !isLoading && (
+          <Button onClick={this.loadMore} disabled={false} />
         )}
+        <Modal
+          isOpen={this.state.isModalOpen}
+          imageUrl={this.state.selectedImageUrl}
+          onClose={this.closeModal}
+        />
       </div>
     );
   }
